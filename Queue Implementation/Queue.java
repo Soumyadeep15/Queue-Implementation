@@ -1,35 +1,34 @@
 public class Queue {
-    private Node first;
-    private Node last;
-    private int count=0;
+    Node first;
+    Node last;
+    private int count = 0;
+
+    public boolean isEmpty() {
+        return first == null;
+    }
 
     public void add(Object data) {
-        Node newNode = new Node(data);
         if(isEmpty()) {
-            first = newNode;
+            first = new Node(data , null);
             last = first;
             count++;
             return;
         }
-       last.next=newNode;
-       last=last.next;
-       count++;
-    }
 
-    private boolean isEmpty() {
-        return first == null;
+        last.next = new Node(data,null);
+        last = last.next;
+        count++;
     }
 
     public Object get() {
         if(isEmpty()) throw new IllegalStateException("Queue is empty");
         Object data = first.data;
         first = first.next;
-        if(first == null) last = null;
         return data;
     }
 
     public Object peek() {
-        if(isEmpty()) throw new IllegalStateException("Queue is Empty");
+        if(isEmpty()) throw new IllegalStateException("Queue is empty");
         return first.data;
     }
 
